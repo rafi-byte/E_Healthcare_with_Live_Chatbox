@@ -1,0 +1,25 @@
+{% extends 'basic.html' %}
+{% block title %}Create a New blog Post {% endblock %}
+{% block content%}
+<div class="shadow p-3 mb-5 bg-white rounded">
+{% if user.is_authenticated and post.author.id == user.id %}
+        <h1>Update Post</h1>
+        <div class="form-group">
+        
+        
+            <form action="" method ='POST'>
+                {% csrf_token %}
+                
+                {{form.as_p}}
+                {{form.media}}
+                <button type="submit" class="btn btn-secondary">Update</button>
+                
+            
+        </form>
+        </div>
+{% else %}
+<h1>Your are not allowed to acces this page without login</h1>
+
+{% endif %}
+</div>
+{% endblock %}

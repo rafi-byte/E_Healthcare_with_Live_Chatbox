@@ -1,0 +1,28 @@
+{% extends 'basic.html' %}
+{% block title %}Delete  blog Post {% endblock %}
+{% block content%}
+<div class="shadow p-3 mb-5 bg-white rounded">
+
+    {% for script in showprescription_list|slice:":1"%}
+   
+     <strong><h1>Prescription </strong> </h1>
+     <ul>
+      <li><strong>Name: {{script.Patient_name}}</strong></li>
+      <li>Email: {{script.patient_age}}</li>
+      <li>Phone Number: {{script.medicine}}</li>
+      <li>Date: {{script.date_added}}</li>
+      <li>Doctor Name: {{script.doc_name}}</li>
+      <li>Disease: {{script.patient_disease}}</li>
+      <li>Advice From Doctor: {{script.advice}}</li>
+      <!-- <li>{{script.email}}</li> -->
+    </ul>
+    
+    {% endfor %}
+
+    <a href="{% url 'pconsultation_history' %}"><button type="button" class="btn btn-primary">
+        Back</button></a>
+    
+
+
+</div>
+{% endblock %}

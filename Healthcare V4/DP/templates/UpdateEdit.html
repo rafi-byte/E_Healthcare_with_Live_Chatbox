@@ -1,0 +1,67 @@
+<!-- article_DETAILS -->
+{% extends 'basic.html' %}
+{% block title %} {{post.title}} {% endblock %}
+
+{% block content%}
+<div class="shadow p-3 mb-5 bg-white rounded">
+<br>
+<br>
+Current User:{{user.id}} --
+Post Author:{{post.author.id}}
+<h1>{{post.title}}!!</h1>
+<small> <b> By: 
+    {% if  post.author.patient.id == user.id %}
+        {{post.author.patient.name}}
+      </b>
+     {% else %}
+        {{post.author.doctor.name}}
+    
+    {% endif %}
+
+
+          - {{post.post_date}}--
+        {% if user.is_authenticated and post.author.id == user.id %}
+
+                  <a href="{% url 'update_view' post.pk %}">Edit</a> 
+                  <a href="{% url 'delete_view' post.pk %}" >Delete Post</a>
+                  
+              
+        {% endif %}
+</small>
+<hr>
+<br>
+{{post.body|safe}}
+
+<br><br>
+<hr>
+<h2>Comments..</h2>
+{% if not post.comments.all %}
+    No commennts yet...   <a href="{% url 'add_comment' post.pk %}">Add One</a>
+
+{% else %}
+<br>
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a> <br><br>
+ 
+    {% for comment in post.comments.all %}
+    <strong> 
+
+        {{comment.name}}--
+        {{comment.date_added}}
+
+    </strong>
+    <br>
+    {{comment.body}}
+    <br>
+    {% endfor %}
+
+<br>
+{% endif %}
+<br><br>
+
+
+
+<br>
+<hr>
+<a href="{% url 'homeview'%}"><button type="button" class="btn btn-secondary">Back</button></a>
+</div>
+{% endblock %}

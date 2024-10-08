@@ -1,0 +1,24 @@
+{% extends 'basic.html' %}
+
+{% block content%}
+
+<h1>{{cats}} Category</h1>
+<ul>
+{% for post in category_posts %}
+  <li><a href="{% url 'article_detail' post.pk %}">{{post.title}}</a>-{{post.title_tag}} {{post.author.first_name}} - {{post.post_date}}<br>
+{{post.author.last_name}} - [{{post.author.email}} ]
+
+<small>
+  {% if user.is_authenticated %}
+<a href="{% url 'update_view' post.pk %}">Edit</a>
+
+<a href="{% url 'delete_view' post.pk %}">Delete</a>
+{% endif %}
+</small><br>
+ -{{post.body| slice:":200"|safe}}
+</li>
+{% endfor %}
+
+</ul>
+
+{% endblock %}

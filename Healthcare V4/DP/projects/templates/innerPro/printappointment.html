@@ -1,0 +1,33 @@
+{% extends 'basic.html' %}
+{% block title %}Delete  blog Post {% endblock %}
+{% block content%}
+<div class="shadow p-3 mb-5 bg-white rounded">
+    <h1>Her is Your Script</h1>
+    {% for script in appointment_list %}
+     {% if user.is_authenticated and patient.id == Appointment.id %}
+     <strong>Appointnment Token</strong> 
+     <ul>
+      <li><strong>Name: {{script.name}}</strong></li>
+      <li>Email: {{script.email}}</li>
+      <li>Phone Number: {{script.phonenumber}}</li>
+      <li>Date: {{script.date_added}}</li>
+      <li>Doctor Name: {{script.doc_name}}</li>
+      <!-- <li>{{script.email}}</li> -->
+    </ul>
+     {% else %}
+
+        <h2>Sorry We cant show you any details! </h2>
+
+      {% endif %}
+
+
+    
+    {% endfor %}
+
+    <a href="{% url 'pconsultation_history' %}"><button type="button" class="btn btn-primary">
+        Back</button></a>
+    
+
+
+</div>
+{% endblock %}

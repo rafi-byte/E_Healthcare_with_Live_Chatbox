@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}
+{%load crispy_forms_tags %}
+{% block title %}Create a New blog Post {% endblock %}
+{% block content%}
+{% if user.is_authenticated %}
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+<h1>Add Category</h1>
+<div class="form-group">
+
+
+    <form action="" method ='POST'>
+        {% csrf_token %}
+        {{ form|crispy }} <br>
+        <button type="submit" class="btn btn-secondary">Add Category</button>
+
+</form>
+</div>
+</div>
+{% else %}
+    <h1>Your are not Allowed in Add Category page</h1>
+{% endif %}
+
+{% endblock %}

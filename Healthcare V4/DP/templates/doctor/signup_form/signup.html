@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="{% static 'doctor/signup_form/signup.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>BONDHU</title>
+  <style>
+    .img {
+      position: relative;
+      float: left;
+      width: 200px;
+      height: 200px;
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .img1 {
+      position: static;
+      float: left;
+      width: 90px;
+      height: 70px;
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-left: -5px;
+    }
+
+
+    body {
+
+      background-image: url("{% static 'homepage/drown.jpg' %}");
+      background-attachment: fixed;
+      opacity: 0.93;
+      background-repeat: no-repeat;
+
+      background-size: cover;
+
+    }
+  </style>
+
+  {% block head %}
+
+  {% endblock %}
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <a href="{% url 'home' %}"><img alt="admin" src="{% static 'homepage/mainlogo.jpg' %}" class="img1"
+        style="border-radius:5px ; height: 70px;"></a>
+
+    <div class="page-header mt-1 mb-1 ml-1 ">
+
+    </div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #1b405a; height: 70px; border-radius: 6px;">
+      <a class="navbar-brand"
+        style="font-weight: 800; font-size: 30px; font-family: monospace; letter-spacing: 5px; text-decoration: none; color: white;"
+        href="{% url 'home' %}">BONDHU</a>
+    </nav>
+  </div>
+
+  <form action='signup_doctor' method="POST"
+    style="max-width:500px; background-color: white; border-radius: 10px; margin:auto ; border-style: solid; border-color: #1b405a; ;padding-right: 2px;">
+
+    <h1></b>
+      <center style="font-size: 28px ;font-weight: bold;">
+        SIGN UP AS DOCTOR</center></b>
+    </h1>
+
+    {% csrf_token %}
+
+    <center>
+      <div>
+        {% for message in messages %}
+        <div class="alert alert-warning" role="alert">
+          <h3 style="color: red;">{{message}}</h3>
+        </div>
+        {% endfor %}
+      </div>
+    </center>
+
+
+
+
+    <div class="input-container">
+      <i class="fa fa-user icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Username" name="username" required>
+    </div>
+
+
+    <div class="input-container">
+      <i class="fa fa-user icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Name" name="name" required>
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-envelope icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Email" name="email" required>
+    </div>
+    <div class="input-container">
+      <i class="fa fa-calendar icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="date" placeholder="Date-of-birth" name="dob" style="width: 50%;" required>
+      <pre>     Date Of Birth      </pre>
+    </div>
+    <div class="input-container">
+      <i class="fa fa-birthday-cake icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="number" placeholder="Age" name="age" required>
+    </div>
+
+    <div class="input-container" style="font-size: 15px ; font-family: sans-serif;">
+      <i class=" fa fa-genderless icon" style="background-color: #1b405a ;"></i>
+      <input class="radio-btn" type="radio" name="gender" value="male" " checked> Male
+      <input class=" radio-btn" type="radio" name="gender" value="female"> Female
+      <input class="radio-btn" type="radio" name="gender" value="other"> Other
+
+    </div>
+
+
+    <div class="input-container">
+      <i class="fa fa-address-book icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Address" name="address" required>
+    </div>
+    <div class="input-container">
+      <i class="fa fa-phone icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="number" placeholder="Mobile" name="mobile" required>
+    </div>
+
+
+
+
+    <div class="input-container">
+      <i class="fa fa-id-card-o icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Registration Number" name="registration_no" required>
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-calendar icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="date" placeholder="Year of registration" name="year_of_registration"
+        style="width: 50%;" required>
+      <pre>    Year Of Registration   </pre>
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-user-md icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="Qualification" name="qualification" required>
+    </div>
+
+
+    <div class="input-container">
+      <i class="fa fa-users icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="text" placeholder="State Medical Council" name="State_Medical_Council" required>
+    </div>
+
+
+    <div class="input-container">
+      <i class="fa fa-address-book icon" style="background-color: #1b405a ;"></i>
+      <pre>  Specialization                                </pre>
+      <select name="specialization">
+        <option disabled="disabled" selected="selected">Specialization</option>
+        <option>Rheumatologist</option>
+        <option>Cardiologist</option>
+        <option>ENT specialist</option>
+        <option>Orthopedist</option>
+        <option>Neurologist</option>
+        <option>Allergist/Immunologist</option>
+        <option>Urologist</option>
+        <option>Dermatologist</option>
+        <option>Gastroenterologist</option>
+        <option>Other</option>
+      </select>
+      <div class="select-dropdown"></div>
+    </div>
+
+
+
+    <div class="input-container">
+      <i class="fa fa-key icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="password" placeholder="Password" name="password" required>
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-check icon" style="background-color: #1b405a ;"></i>
+      <input class="input-field" type="password" placeholder="Retype Password" name="password1" required>
+    </div>
+
+
+    <center>
+      <button type="submit" class="btn"
+        style="background-color: #1b405a ;margin: auto; width: 90px; padding-bottom: -3px; margin-bottom: 3px; border-radius: 4px;">Register</button>
+    </center>
+
+  </form>
+
+</body>
+
+</html>

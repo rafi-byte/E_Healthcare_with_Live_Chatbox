@@ -1,0 +1,33 @@
+{% extends 'basic.html' %}
+{% block title %}Create a New blog Post {% endblock %}
+{% block content%}
+
+
+{% if user.is_authenticated %}
+<div class="shadow p-3 mb-5 bg-white rounded">
+<h1>Add Post</h1>
+
+<div class="form-group">
+
+
+    <form action="" method ='POST'>
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-secondary">Post</button>
+
+</form>
+</div>
+
+ <script>
+       var name="{{user.id}}";
+       document.getElementById("elder").value=name;
+      
+ </script>
+
+{% else %}
+
+<h1>Your are not Allowed in Post page</h1>
+{% endif %}
+</div>
+{% endblock %}

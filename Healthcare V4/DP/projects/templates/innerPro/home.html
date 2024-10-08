@@ -1,0 +1,64 @@
+{% extends 'basic.html' %}
+
+{% block content%}
+
+<head>
+<style>
+ h1 {text-align: center;} 
+
+
+  button[type=button] {
+      position: relative;
+      background-color: #045faa;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 90%;
+      
+  }
+
+</style>
+</head>
+<h1 style="color:#ffffff">Forum Post</h1>
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <a href="{% url 'add_post'  %}" > <button type="button" class="btn btn-primary"> Add Post</button></a>
+<ul>
+{% for post in object_list  reversed %}
+<div class="d-flex flex-column bd-highlight mb-3">
+  <div class="p-2 bd-highlight">
+     <li><a href="{% url 'article_detail' post.pk %}">{{post.title}}</a> -{{post.title_tag}} 
+      {% if  post.author.patient.id == user.id %}
+      {{post.author.patient.name}}
+      [{{post.author.patient.email}} ]
+         </b>
+      {% else %}
+       {{post.author.doctor.name}}
+      [{{post.author.doctor.rating}}]
+  
+       {% endif %}
+      
+      
+      
+      {{post.post_date}}<br>
+   
+
+<small>
+  {% if user.is_authenticated and post.author.id == user.id %}
+<a href="{% url 'update_view' post.pk %}">Edit</a>
+
+<a href="{% url 'delete_view' post.pk %}">Delete</a>
+
+{% endif %}
+</small><br>
+{{post.snippet}}
+<!-- <p class="text-lg-left">  {{post.body| slice:":200"|safe}}</p> -->
+</li>
+</div>
+{% endfor %}
+
+</ul>
+</div>
+
+{% endblock %}
