@@ -29,7 +29,7 @@ Non-Functional Requirements:
 Technologies Used:
   - Backend: Python (Django framework)
   - Frontend: HTML, CSS, JavaScript
-  - Database: MySQL
+  - Database: PostgreSQL
 
 Key Functionalities:
   - Sign Up/Log In: Secure user authentication for both patients and consultants.
